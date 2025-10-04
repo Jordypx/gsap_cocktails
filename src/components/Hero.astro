@@ -1,0 +1,203 @@
+---
+import "../styles/global.css";
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hero</title>
+  </head>
+  <body>
+    <>
+      <section id="hero" class="noisy">
+        <h1 class="title">MOJITO</h1>
+
+        <img src="src/assets/yellow-2895640_640.png" class="MOjitoIMG" alt="" />
+
+        <img
+          src="src/assets/yellow-2895640_640.png"
+          class="moJOtorIMG"
+          alt=""
+        />
+
+        <div class="body">
+          <div class="content">
+            <div class="space-y-5 textCond">
+              <p>Cool. Crisp. Classic.</p>
+              <div class="subtitle">
+                <p>
+                  Sip the Spirit <br /> of Summer
+                </p>
+              </div>
+            </div>
+
+            <div class="view-cocktails">
+              <div class="subtitleText">
+                <p class="subtitle">
+                  Every cocktail on our menu is a blend of premium ingredients,
+                  creative flair, and timeless recipes-designed to delight your
+                  senses.
+                </p>
+                <a href="#menu">View Cocktails</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </>
+  </body>
+</html>
+
+<style>
+  @import url("https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Mona+Sans:ital,wght@0,200..900;1,200..900&display=swap");
+
+  #hero {
+    position: relative;
+    width: 100%;
+    height: 100dvh;
+    inset: 0;
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  .noisy {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    background: url("src/assets/adrien-olichon-ilVYjf0J378-unsplash (1).webp");
+    background-size: cover;
+    background-position: center;
+  }
+
+  .title {
+    text-align: center;
+    font-family: "", serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;
+    font-size: 9rem;
+    transform: translateY(-50%, -50%);
+    margin-top: 2rem;
+  }
+
+  #hero .MOjitoIMG {
+    position: absolute;
+    left: -15%;
+    width: 30%;
+    top: 35%;
+  }
+
+  #hero .moJOtorIMG {
+    position: absolute;
+    right: -15%;
+    top: 11%;
+    width: 30%;
+    transform: scaleX(-1);
+  }
+
+  .content {
+    position: absolute;
+    bottom: 0%;
+    left: 3%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 5%;
+  }
+
+  .textCond p {
+    font-family: "Mona Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-size: 1rem;
+    font-style: normal;
+    color: white;
+  }
+
+  .subtitle p {
+    font-family: "Bodoni Moda", serif;
+    font-optical-sizing: auto;
+    font-weight: 800;
+    font-style: normal;
+    font-size: 1.5rem;
+    color: var(--color-yellow);
+    line-height: 1.5;
+  }
+
+  .subtitleText p {
+    font-family: "Mona Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-size: 0.9rem;
+    font-style: normal;
+    color: white;
+    line-height: 1.5;
+    display: block;
+    max-width: 300px;
+    margin-bottom: 0.8rem;
+  }
+
+  .reveal h1 {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(100%);
+  }
+</style>
+
+<script>
+  import { gsap } from "gsap";
+
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+  import { SplitText } from "gsap/SplitText";
+
+  gsap.registerPlugin(ScrollTrigger, SplitText);
+
+  window.addEventListener("DOMContentLoaded", () => {
+    // Split the text into characters and words
+    const heroSplit = new SplitText(".title", { type: "chars, words" });
+    const ParagraphSplit = new SplitText(".subtitle", {
+      type: "lines",
+    });
+
+    // Apply gradient text class to each character
+    heroSplit.chars.forEach((char) => {
+      char.classList.add("text-gradient");
+    });
+
+    // Animate each character upwards with a stagger
+    gsap.from(heroSplit.chars, {
+      yPercent: 100,
+      duration: 1.8,
+      ease: "expo.out",
+      stagger: 0.06,
+    });
+
+    gsap.from(ParagraphSplit.lines, {
+      opacity: 0,
+      yPercent: 100,
+      duration: 1.8,
+      ease: "expo.out",
+      stagger: 0.06,
+      delay: 1,
+    });
+
+    // Fade in the whole title smoothly
+    gsap.to(".title", { opacity: 1, duration: 0.3 });
+
+    gsap
+      .timeline({
+        scrollTrigger: {
+          trigger: "#hero",
+          start: "top top",
+          end: "bottom top",
+          scrub: true,
+        },
+      })
+      .to(".MOjitoIMG", { y: -200 }, 0)
+      .to(".moJOtorIMG", { y: 200 }, 0);
+  });
+</script>

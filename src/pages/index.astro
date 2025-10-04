@@ -1,10 +1,9 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import { ScrollTrigger, SplitText } from "gsap/all";
-import { gsap } from "gsap";
 import "../styles/global.css";
 
-gsap.registerPlugin(ScrollTrigger, SplitText);
+import NavBar from "../components/NavBar.astro";
+import Hero from "../components/Hero.astro";
 ---
 
 <Layout />
@@ -13,13 +12,15 @@ gsap.registerPlugin(ScrollTrigger, SplitText);
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Home</title>
   </head>
   <body>
-    <div class="flex items-center justify-center h-screen">
-      <h1 class="text-4xl text-indigo-300 flex items-center justify-center">
-        Hello world
-      </h1>
-    </div>
+    <main>
+      <NavBar />
+      <Hero />
+      <div class="bg-black h-dvh p-10">
+        <h1 class="text-white font-bold text-5xl">Next Section</h1>
+      </div>
+    </main>
   </body>
 </html>

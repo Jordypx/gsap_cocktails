@@ -1,10 +1,5 @@
 @import "tailwindcss";
 
-@font-face {
-  font-family: Modern Negra;
-  src: url("/fonts/Modern Negra Demo.ttf") format("truetype");
-}
-
 :root {
   --color-yellow: #e7d393;
   --color-white-100: #efefef;
@@ -15,12 +10,55 @@
 
 html,
 body {
-  width: 100%;
   background-color: black;
   color: white;
   scroll-behavior: smooth;
   overflow-x: hidden;
+  width: 100%;
 }
+
+@utility text-gradient {
+  background: linear-gradient(to bottom, #ffffff, #898989);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* @layer components {
+  .noisy {
+    @apply absolute inset-0 size-full bg-[url('src/assets/adrien-olichon-ilVYjf0J378-unsplash (1).webp')];
+  }
+} */
+
+/* @layer components {
+  main {
+    @apply w-full overflow-x-hidden;
+  }
+
+  nav {
+    @apply fixed z-50 w-full;
+
+    div {
+      @apply flex md:flex-row flex-col md:justify-between items-center gap-5  py-5 px-5 md:px-16 lg:px-0 container;
+    }
+
+    p {
+      @apply font-modern-negra text-3xl -mb-2;
+    }
+
+    a {
+      @apply cursor-pointer text-nowrap md:text-base text-sm;
+    }
+
+    ul {
+      @apply flex-center lg:gap-12 gap-7;
+    }
+  }
+
+  .noisy {
+    @apply absolute inset-0 size-full pointer-events-none bg-[url('src/assets/adrien-olichon-ilVYjf0J378-unsplash (1).webp')];
+  }
+} */
 
 /* @utility flex-center {
     @apply flex justify-center items-center;
